@@ -3,6 +3,7 @@
 ![image](https://user-images.githubusercontent.com/125625659/219575569-1cb882aa-6658-4543-bc75-458ce4085f93.png)
 
 ## 使用
+> 需要有requests库
 - 下载vulInfPush.py文件
 - `WEBHOOK_URL`处填写企业微信机器人WEBHOOK
 - `VULDATE`处填写想更新的天数
