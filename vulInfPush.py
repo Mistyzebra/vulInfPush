@@ -5,7 +5,7 @@ import json
 # 获取天数
 VULDATE = 1
 # 企微机器人WEBHOOK_URL
-WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=Your Keys'
+WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=Your-keys'
 
 # 漏洞数据处理函数
 def qianxinVulProcess():
@@ -25,8 +25,8 @@ def qianxinVulProcess():
         yesterday = today - timedelta(days=VULDATE)
         vul_list = []
         for vul in vuldata:
-            publish_time = datetime.strptime(vul['publish_time'], "%Y-%m-%d") 
-            if yesterday <= publish_time <= today:
+            update_time = datetime.strptime(vul['update_time'], "%Y-%m-%d %H:%M:%S") 
+            if yesterday <= update_time <= today:
                 vullist = {
                     'vul_name': vul['vuln_name'],
                     'cve_code': vul['cve_code'],
