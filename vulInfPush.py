@@ -3,7 +3,7 @@ import requests
 import json
 
 # 获取天数
-VULDATE = 1
+VULDATE = 4
 # 企微机器人WEBHOOK_URL
 WEBHOOK_URL = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=Your-keys'
 
@@ -22,19 +22,21 @@ def qianxinVulProcess():
         r.raise_for_status()
         vuldata = (json.loads(r.content, strict=False))['data']['data']
         today = datetime.today()
-        yesterday = today - timedelta(days=VULDATE)
+        lastday = today - timedelta(days=VULDATE)
         vul_list = []
         for vul in vuldata:
             update_time = datetime.strptime(vul['update_time'], "%Y-%m-%d %H:%M:%S") 
-            if yesterday <= update_time <= today:
+            if lastday <= update_time <= today:
                 vullist = {
+                    'vul_id': vul['id'],
                     'vul_name': vul['vuln_name'],
                     'cve_code': vul['cve_code'],
                     'threat_category': vul['threat_category'],
                     'technical_category': vul['technical_category'],
                     'description': vul['description'],
                     'rating_level': vul['rating_level'],
-                    'publish_time': vul['publish_time']
+                    'publish_time': vul['publish_time'],
+                    'update_time': update_time
                 }
                 tag = []
                 for tag_name in vul['tag']:
@@ -58,6 +60,8 @@ def msgProcess(vullist):
         msg += '标签：{}\n'.format(', '.join(vul['tag']))
         msg += '漏洞简述：{}\n'.format(vul['description'])
         msg += '公开日期：{}\n'.format(vul['publish_time'])
+        msg += '更新日期：{}\n'.format(vul['update_time'])
+        msg += '漏洞链接：{}\n'.format("https://ti.qianxin.com/vulnerability/detail/"+ str(vul['vul_id']))
         msg += '\n'
     return msg
 
