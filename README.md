@@ -1,6 +1,6 @@
 # vulInfPush
 漏洞信息推送脚本，目前支持企业微信机器人消息通知
-![image](https://user-images.githubusercontent.com/125625659/219575569-1cb882aa-6658-4543-bc75-458ce4085f93.png)
+![image](https://user-images.githubusercontent.com/125625659/224922268-88b404c4-dcab-46df-8410-cb94935e7960.png)
 
 ## 使用
 > 需要有requests库
