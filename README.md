@@ -8,7 +8,7 @@
 - `WEBHOOK_URL`处填写企业微信机器人WEBHOOK
 - `VULDATE`处填写想更新的天数
 
-可使用`crontab`或windows定时任务来做定时执行
+可使用`crontab`或`windows定时任务`来做定时执行
 
 ## 说明
 数据来源于奇安信漏洞库，主要是一些关键漏洞，个人觉得不会占用太多的时间在漏洞筛选上
